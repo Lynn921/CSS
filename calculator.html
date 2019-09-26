@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>列表计数器</title>
+    <style>
+        ul {
+            counter-reset: counter;
+            list-style: none;
+        }
+        
+        li::before {
+            counter-increment: counter;
+            content: counters(counter, '.');
+            margin-right: 8px;
+            color: #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>List item</li>
+        <li>List item</li>
+        <li>
+            List item
+            <ul>
+                <li>List item</li>
+                <li>List item</li>
+                <li>List item</li>
+            </ul>
+        </li>
+
+</body>
+
+</html>
