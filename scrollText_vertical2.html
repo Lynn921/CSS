@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>测试</title>
+
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+        
+        #scroll-box {
+            width: 200px;
+            height: 22px;
+            line-height: 22px;
+            background: red;
+            overflow: hidden;
+        }
+        
+        #scroll-box ul {
+            margin: 0
+        }
+        
+        #scroll-box li {
+            color: #fff
+        }
+    </style>
+</head>
+
+<body>
+    <div id="scroll-box">
+        <ul>
+            <li>第一条公告</li>
+            <li>第二条公告</li>
+            <li>第三条公告</li>
+            <li>第四条公告</li>
+        </ul>
+        <ul></ul>
+    </div>
+    <script type="text/javascript">
+        var box = document.getElementById('scroll-box')
+        var parent = document.getElementsByTagName('ul')[0]
+        var parent2 = document.getElementsByTagName('ul')[1]
+        parent2.innerHTML = parent.innerHTML    /*启动定时器*/    
+        var timer = setInterval(autoScrollLine, 30)   /*单行向上滚动效果*/  
+        function autoScrollLine() {  
+            if (box.scrollTop >= parent.offsetHeight) {  
+                box.scrollTop = 0;  
+            } else {   
+                box.scrollTop++;  
+            }   
+            if (box.scrollTop % box.offsetHeight == 0) {
+                clearInterval(timer)
+                setTimeout(() => {
+                    timer = setInterval(autoScrollLine, 30)  
+                }, 1000)  
+            }
+        }
+    </script>
+
+</body>
+
+</html>

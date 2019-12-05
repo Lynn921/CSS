@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table {
+            width: 500px;
+        }
+        
+        #box {
+            width: 500px;
+            height: 60px;
+            overflow: hidden;
+        }
+        
+        th,
+        td {
+            width: 100px;
+            height: 30px;
+            line-height: 35px;
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>住址</th>
+        </tr>
+    </table>
+
+    <div id="box">
+        <table id="con1"></table>
+        <table id="con2"></table>
+    </div>
+</body>
+
+</html>
+<script>
+    var box = document.getElementById("box");
+    var con1 = document.getElementById("con1");
+    var con2 = document.getElementById("con2");
+    window.onload = getData()
+    var dataTimer = setInterval(() => {
+        let obj = {
+            id: 10004,
+            name: '张飞4',
+            age: 24,
+            palce: '上海4'
+        }
+        getData(obj)
+    }, 10000)
+
+    function getData(obj) {
+        console.log(1)
+        let arr = [{
+            id: 10001,
+            name: '张飞1',
+            age: 21,
+            palce: '上海1'
+        }, {
+            id: 10002,
+            name: '张飞3',
+            age: 22,
+            palce: '上海2'
+        }, {
+            id: 10003,
+            name: '张飞3',
+            age: 23,
+            palce: '上海3'
+        }]
+        if (obj) {
+            arr.push(obj)
+        }
+        var str = ''
+        for (var i = 0; i < arr.length; i++) {
+            str += `<tr>
+                        <td>${arr[i].id}</td>
+                        <td>${arr[i].name}</td>
+                        <td>${arr[i].age}</td>
+                        <td>${arr[i].palce}</td>
+                    </tr>`
+        }
+        con1.innerHTML = str;
+        con2.innerHTML = con1.innerHTML;
+    }
+
+    var speed = 50;
+
+    function ScrollUp() {
+        if (box.scrollTop >= con1.scrollHeight) {
+            box.scrollTop = 0;
+        } else {
+            box.scrollTop++;
+        }
+    }
+    var timer = setInterval("ScrollUp()", speed);
+
+    box.onmouseenter = function() {
+        Stop()
+    }
+    box.onmouseleave = function() {
+        Up()
+    }
+
+    function Stop() {
+        clearInterval(timer);
+    }
+
+    function Up() {
+        timer = setInterval("ScrollUp()", speed);
+    }
+</script>
